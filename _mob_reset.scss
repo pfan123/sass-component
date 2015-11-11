@@ -1,0 +1,73 @@
+﻿@charset "utf-8";
+/*******************重置样式 *******************/
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    outline: 0;
+}
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+img {
+    border: 0 none;
+    vertical-align: top;
+}
+i, em {
+    font-style: normal;
+}
+ol, ul {
+    list-style: none;
+}
+input, select, button, h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-family: inherit;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+html {
+    min-width: 100% !important;
+    min-height: 100% !important;
+}
+body {
+    width: 100% !important;
+    height: 100% ;
+    max-width:640px;
+    margin:0 auto;
+    left: 50%;
+    background: #FFF;
+    font-size: 14px;
+    font-family: Helvetica, STHeiti STXihei, Microsoft JhengHei, Microsoft YaHei, Arial;
+    line-height: 1.5;
+    color: #666;
+    -webkit-text-size-adjust: 100% !important;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.g_cf:after{
+    display:block;
+    content:'\20';
+    clear:both;
+    height:0;
+    visibility:hidden;
+}
+input{-webkit-appearance: none;}
+.g_cf{
+    *zoom:1;
+    *overflow:hidden
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

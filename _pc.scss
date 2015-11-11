@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+/*引进图片合并给一个变量(后面会用到这个变量) vertical 垂直 horizontal 水平*/
+$sprites:sprite-map("active/*.png",$spacing:8px,$layout: vertical);
+
+/*雪碧图mixin引块，pc和移动端因为目前编译不过GIF，故暂用png8*/
+$media:false;
+@mixin iconItem($sprites,$name,$iE6:null){
+	background:sprite-url($sprites) no-repeat;  //获取整个雪碧图路径
+	@if $iE6 != null{ //null
+		_background:sprite-url($iE6) no-repeat; //此处传进来的格式须是png8
+	}
+	$width:image-width(sprite-file($sprites,$name));  //sprite-file 获取目标图片
+	$height:image-height(sprite-file($sprites,$name));  //获取目标图片
+	$toalWidth:image-width(sprite-path($sprites));    //获取整张图的宽度
+	$totalHeight:image-height(sprite-path($sprites));   //获取整张图的高度
+	$widthHalf:ceil($width/2);							 //获取宽度的一半
+	$heightHalf:ceil($height/2);						//获取高度的一半
+	//sprite-position 获取目标图的位置,nth操作数组
+	$posX:round(nth(sprite-position($sprites,$name),1));  //获取沿x轴的位移
+	$posY:round(nth(sprite-position($sprites, $name), 2));  //获取沿y轴的位移
+	@if $media{//wap
+		height:pxTorem($heightHalf);
+		width:pxTorem($widthHalf);
+		font:$posX;
+		font:$posY;
+		background-position: pxTo2rem($posX) pxTo2rem($posY);
+		background-size:pxTo2rem($toalWidth) pxTo2rem($totalHeight);
+	} @else{//PC
+		height:$height;
+		width:$width;
+		background-position:sprite-position($sprites,$name);
+	}
+}
+/*带时间戳的图片,pc和移动端 ,$imgUrl必须带文件夹和文件名字符串,例"icon/pig.png"*/
+@mixin  timestampImg($imgUrl){
+	background:image-url($imgUrl) no-repeat;
+	$width:image-width($imgUrl);
+	$height:image-height($imgUrl);
+	@if $media{ //wap
+		width:pxTo2rem($width);
+		height:pxTo2rem($height);
+		background-size:pxTo2rem($width) pxTo2rem($height);
+	} @else{
+		height:$height;
+		width:$width;
+	}
+}
+/*base64位的图片,pc和移动端 ,$imgUrl必须带文件夹和文件名字符串,例"icon/pig.png"*/
+@mixin  base64Img($imgUrl){
+	background:inline-image($imgUrl) no-repeat;
+	$width:image-width($imgUrl);
+	$height:image-height($imgUrl);
+	@if $media{ //wap
+		width:pxTo2rem($width);
+		height:pxTo2rem($height);
+		background-size:pxTo2rem($width) pxTo2rem($height);
+	} @else{
+		height:$height;
+		width:$width;
+	}
+}
+
+@mixin boradius($size){
+	-webkit-border-radius:$size;
+	-moz-border-radius:$size;
+	-o-border-radius:$size;
+	-ms-border-radius:$size;
+	border-radius:$size;
+}
+%box{
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+%inlineb{display:inline-block;}
+%block{display:block;}
+//绝对居中
+@mixin  pscenter($width,$height){
+	width:$width;
+	height:$height;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:(-$height/2) 0 0 (-$width/2)
+}
+
+%placeholder{
+	position:absolute;
+	display:block;
+	content:"\20";
+}
+// 文字省略：单行
+%text_oneline {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// 文字省略：两行
+%text_twoline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+// 文字省略：自定义多行
+@mixin elli($elli) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $elli;
+    -webkit-box-orient: vertical;
+}
+
+//动画
+@mixin animation($value...){
+    -webkit-animation:$value;
+    animation:$value;
+}
