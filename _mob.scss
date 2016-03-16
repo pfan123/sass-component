@@ -9,11 +9,11 @@
 /*转换px到rem*/
 $browser-default-font-size : 20px !default;
 @function pxTorem($px){
-	@if $px == 0{$px:0px}
+	@if $px == 0{ @return 0;}
 	@return $px / $browser-default-font-size * 1rem;
 }
 @function pxTo2rem($px){
-	@if $px == 0{$px:0px}
+	@if $px == 0{@return 0;}
 	@return $px / ($browser-default-font-size*2) * 1rem;
 }
 
@@ -192,49 +192,6 @@ $media:ture;
     font-family: arial;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 120dpi), (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .xin_tab:after, .xin_mark_panel .mark_box .item:after {
-    -webkit-transform: scaleY(0.5);
-    -webkit-transform-origin: 50% 100%;
-  }
-
-  .xin_tab a:before, .xin_mark_panel .mark_box:before {
-    -webkit-transform: scaleX(0.5);
-    -webkit-transform-origin: 0% 0%;
-  }
-
-  .xin_rec_list .info .tag span:after {
-    -webkit-transform: scale(0.5);
-    -webkit-transform-origin: 0% 0%;
-    bottom: -100%;
-    right: -100%;
-  }
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 3) {
-  .xin_tab:after,
-  .xin_mark_panel .mark_box .item:after {
-    -webkit-transform: scaleY(0.333);
-  }
-
-  .xin_rec_list .info .tag span:after {
-    -webkit-transform: scale(0.333);
-    -webkit-transform-origin: 0% 0%;
-    bottom: -200%;
-    right: -200%;
-  }
-}
-@media only screen and (-webkit-device-pixel-ratio: 1.5) {
-  .xin_tab:after,
-  .xin_mark_panel .mark_box .item:after {
-    -webkit-transform: scaleY(0.666);
-  }
-
-  .xin_rec_list .info .tag span:after {
-    -webkit-transform: scale(0.666);
-    bottom: -50%;
-    right: -50%;
-  }
-}
 
 
 //颜色函数 lighten($color10,90%),darken($color9,90%)
